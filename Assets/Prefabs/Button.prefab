@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 2477873972593158733}
   - component: {fileID: 2639318855323540305}
   - component: {fileID: 6862667977978239490}
-  m_Layer: 0
+  - component: {fileID: 7164154923447337195}
+  m_Layer: 6
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7269,3 +7270,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7164154923447337195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7802251825642473739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11143cc8b3320a24f8a6c5782915cc99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  target: {fileID: 0}

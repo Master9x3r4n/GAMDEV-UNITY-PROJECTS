@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 1251506683154296451}
   - component: {fileID: 2787336062292346183}
   - component: {fileID: 1610404692184874679}
-  m_Layer: 0
+  - component: {fileID: 6844243926500236859}
+  m_Layer: 6
   m_Name: BasePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,3 +357,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &6844243926500236859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337811951000105451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c02011902c1247489566fa8a62186bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TriggerPlatform
+  finalPos: {x: 0, y: 0, z: 0}
+  speed: 0
+  rotateBy: {x: 0, y: 0, z: 0}
+  rotateSpeed: 0

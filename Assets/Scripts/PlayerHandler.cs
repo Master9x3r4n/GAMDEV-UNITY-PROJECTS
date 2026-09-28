@@ -7,6 +7,7 @@ public class PlayerHandler : MonoBehaviour
     
     void Start()
     {
+        SetOrigin(new Vector3(0, 1f, 0));
         ResetPosition();
     }
 
@@ -19,5 +20,10 @@ public class PlayerHandler : MonoBehaviour
     public void ResetPosition()
     {
         transform.position = origin;
+    }
+    
+    public void SetOrigin(Vector3 pos)
+    {
+        origin = pos;
     }
 }

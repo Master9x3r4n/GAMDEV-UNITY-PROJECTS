@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19dc19d1378d51d429bc4e3b761c5325, type: 3}
   m_Name: MoveStats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  maxHealth: 5
-  currentHealth: 5
-  level: 1
+  jumpHeight: 15
+  fallMultiplier: 3.5
   speed: 8
   turnSpeed: 7
-  jumpHeight: 14
-  fallMultiplier: 3.5

@@ -10,7 +10,8 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] private float maxInterval = 3.5f;
     [SerializeField] private int level = 1;
     
-    private float spawnOffset = -10f;
+    [SerializeField]
+    private float spawnOffset = 10f;
     private bool isActive = false;
     private Coroutine spawnCoroutine;
     
@@ -63,12 +64,50 @@ public class LaserSpawner : MonoBehaviour
         {
             if (isActive)
             {
-                Quaternion rotate = Quaternion.Euler(Random.Range(0f, 360f), 0, 0);
-                Vector3 position = new Vector3(spawnOffset, Random.Range(-1.5f, 2.5f), Random.Range(-2.5f, 2.5f));
-                Instantiate(laserPrefab, position + transform.position, rotate);
+                int count = 1 + RollUntilFailure();
+                
+                bool isRotating = (count <= 2) && (Random.Range(0, 5) == 0);
+
+                for (int j = 0; j < count; j++)
+                {
+                    Quaternion rotate = Quaternion.Euler(Random.Range(0f, 360f), 0, 0);
+                    Vector3 position = new Vector3(
+                        spawnOffset, 
+                        Random.Range(-1.5f, 2f), 
+                        Random.Range(-2.5f, 2.5f)
+                    );
+
+                    GameObject laserObject = Instantiate(laserPrefab, position + transform.position, rotate);
+                    
+                    if (isRotating)
+                    {
+                        LaserController controller = laserObject.GetComponent<LaserController>();
+                        if (controller != null)
+                        {
+                            controller.IsRotating = true;
+                        }
+                    }
+                }
+
                 yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
             }
+            else
+            {
+                yield return null; 
+            }
         }
+    }
+    
+    static int RollUntilFailure()
+    {
+        int successCount = 0;
+        
+        while (Random.Range(0, 2) == 1 && successCount < 5)
+        {
+            successCount++;
+        }
+
+        return successCount;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062cb2dc43eb59e4080c3cb62899279e, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  maxHealth: 5
-  currentHealth: 5
-  level: 1
+  maxHealth: 3
   origin: {x: 0, y: 1, z: 0}
+  currentHealth: 3
+  level: 1

@@ -5,15 +5,11 @@ public class PlayerHandler : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private PlayerStats stats;
+    public static event Action<int> OnHealthChanged;
     
     void Start()
     {
         ResetPlayer();
-    }
-
-    private void OnEnable()
-    {
-        throw new NotImplementedException();
     }
 
     void ResetPlayer()
@@ -21,12 +17,17 @@ public class PlayerHandler : MonoBehaviour
         transform.position = stats.origin;
         stats.currentHealth = stats.maxHealth;
         stats.level = 1;
+        stats.score = 0;
+        
+        OnHealthChanged?.Invoke(stats.currentHealth);
     }
 
     public void ReduceHealth()
     {
-        //stats.currentHealth -= 1;
+        stats.currentHealth -= 1;
         Debug.Log("Player currentHealth: " + stats.currentHealth);
+        
+        OnHealthChanged?.Invoke(stats.currentHealth);
         
         if (stats.currentHealth <= 0)
         {
@@ -40,10 +41,14 @@ public class PlayerHandler : MonoBehaviour
         FindAnyObjectByType<GameManager>().TriggerLevelUp();
     }
 
-    private void TriggerGameOver()
+    public void TriggerGameOver()
     {
         FindAnyObjectByType<GameManager>().TriggerGameOver();
-        ResetPlayer();
         Debug.Log("Game Over!");
+    }
+
+    public void IncreaseScore()
+    {
+        stats.score++;
     }
 }

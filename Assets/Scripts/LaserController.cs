@@ -1,21 +1,32 @@
+// LaserController.cs
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class LaserController : MonoBehaviour
 {
+    [SerializeField] private float rotationSpeed = 15f;
+
     private float laserSpeed = 10f;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private int rotateDirection;
+
+    public bool IsRotating { get; set; }
+
     void Start()
     {
-        laserSpeed = Random.Range(10f, 20f);
+        laserSpeed = Random.Range(10f, 30f);
+        rotateDirection = Random.Range(0, 2) * 2 - 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position += Vector3.left * laserSpeed * Time.deltaTime;
+
+        if (IsRotating)
+        {
+            transform.Rotate(Vector3.right, rotateDirection * rotationSpeed * Time.deltaTime);
+        }
+
         if (transform.position.x < -2.5f) Destroy(gameObject);
     }
 
@@ -42,6 +53,4 @@ public class LaserController : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    
-    
 }

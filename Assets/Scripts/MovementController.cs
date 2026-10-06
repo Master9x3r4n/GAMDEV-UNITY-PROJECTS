@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,11 +30,36 @@ public class MovementController : MonoBehaviour
 
     void Start()
     {
+        EnableMovement();
         jumpAction = InputSystem.actions.FindAction("Jump");
 
         // setup jump action
         if (jumpAction != null)
             jumpAction.performed += OnJumpPerformed;
+    }
+    
+    private void OnEnable()
+    {
+        GameManager.OnGameOver += DisableMovement;
+        GameManager.OnGameStart += EnableMovement;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnGameOver -= DisableMovement;
+        GameManager.OnGameStart -= EnableMovement;
+    }
+
+    void DisableMovement()
+    {
+        stats.currSpeed = 0;
+        stats.currTurnSpeed = 0;
+    }
+
+    void EnableMovement()
+    {
+        stats.currSpeed = stats.speed;
+        stats.currTurnSpeed = stats.turnSpeed;
     }
 
     void OnDestroy()
@@ -54,7 +80,7 @@ public class MovementController : MonoBehaviour
         Vector3 moveDirection = new Vector3(moveInput.y, 0f, -moveInput.x).normalized;
 
         // apply movement velocity 
-        Vector3 targetVelocity = moveDirection * stats.speed;
+        Vector3 targetVelocity = moveDirection * stats.currSpeed;
         Vector3 velocity = rb.linearVelocity;
         
         velocity.x = targetVelocity.x;
@@ -71,7 +97,7 @@ public class MovementController : MonoBehaviour
         if (moveDirection.sqrMagnitude > 0.01f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, stats.turnSpeed * Time.fixedDeltaTime));
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, stats.currTurnSpeed * Time.fixedDeltaTime));
         }
 
         // jump logic

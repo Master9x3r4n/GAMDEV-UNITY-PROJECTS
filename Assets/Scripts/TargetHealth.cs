@@ -13,8 +13,10 @@ public class TargetHealth : MonoBehaviour
 
     private HingeJoint hinge;
     private Rigidbody rb;
+    private bool knockedOut;
     
     public event Action AuraKilledHerself;
+    public static event Action AnyAuraKilledHerself;
 
     void Start()
     {
@@ -42,16 +44,17 @@ public class TargetHealth : MonoBehaviour
 
     private void Knockout()
     {
-        if (hinge != null)
-        {
-            Destroy(hinge); 
-            rb.AddForce(Vector3.up * 1.75f, ForceMode.Impulse);
-            Raise();
-        }
+        if (knockedOut || hinge == null) return;
+        knockedOut = true;
+
+        Destroy(hinge);
+        rb.AddForce(Vector3.up * 1.75f, ForceMode.Impulse);
+        Raise();
     }
     
     private void Raise()
     {
         AuraKilledHerself?.Invoke();
+        AnyAuraKilledHerself?.Invoke();
     }
 }

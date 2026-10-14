@@ -53,7 +53,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Start()
     {
-        // Fallback to Main Camera if unassigned in Inspector
+        // fallback to Main Camera if unassigned in Inspector
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
 

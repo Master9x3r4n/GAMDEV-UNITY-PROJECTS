@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   maxHits: 3
-  minVelocity: 20.5
+  minVelocity: 20
   maxVelocity: 21.2
 --- !u!1 &3115316965704040678
 GameObject:

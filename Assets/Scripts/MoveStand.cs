@@ -20,7 +20,8 @@ public class MoveStand : MonoBehaviour
 
     private void Update()
     {
-        float offset = Mathf.PingPong(Time.time * speed, distance);
-        transform.position = startPosition + Vector3.right * offset;
+        float dir = Mathf.Sign(distance);
+        float offset = Mathf.PingPong(Time.time * speed, Mathf.Abs(distance));
+        transform.position = startPosition + transform.forward * dir * offset;
     }
 }

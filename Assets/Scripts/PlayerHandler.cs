@@ -14,7 +14,7 @@ public class PlayerHandler : MonoBehaviour
 
     void ResetPlayer()
     {
-        transform.position = stats.origin;
+        transform.localPosition = stats.origin;
         stats.currentHealth = stats.maxHealth;
         stats.level = 1;
         stats.score = 0;

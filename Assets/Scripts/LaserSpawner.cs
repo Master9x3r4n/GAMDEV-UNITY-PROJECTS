@@ -44,7 +44,7 @@ public class LaserSpawner : MonoBehaviour
         if (spawnCoroutine == null)
         {
             isActive = true;
-            spawnCoroutine = StartCoroutine(SpawnLaser());
+            //spawnCoroutine = StartCoroutine(SpawnLaser());
         }
     }
 

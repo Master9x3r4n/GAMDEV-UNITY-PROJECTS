@@ -39,6 +39,7 @@ public class SpotlightReveal : MonoBehaviour
         int count = Physics.OverlapSphereNonAlloc(origin, spot.range, buffer, hiddenMask,
                                                   QueryTriggerInteraction.Collide);
 
+        // check all boosts in spotlight
         for (int i = 0; i < count; i++)
         {
             Collider c = buffer[i];

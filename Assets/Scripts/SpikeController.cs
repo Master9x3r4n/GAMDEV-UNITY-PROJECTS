@@ -58,7 +58,7 @@ public class SpikeController : MonoBehaviour
         Vector3 next = Vector3.MoveTowards(current, target, speed * Time.deltaTime);
         Vector3 step = next - current;
 
-        // check the path BEFORE moving, so a fast spike can't skip over the player
+        // check the path before moving
         CheckHit(step.normalized, step.magnitude);
 
         transform.position = next;

@@ -63,9 +63,9 @@ public class SpeedBoost : MonoBehaviour
 
     private void TryCollect(Collider other)
     {
-        Debug.Log($"TryCollect by {other.name}, revealed={isRevealed}");
+        Debug.Log($"revealed={isRevealed}");
         
-        // hidden objects can't be collected
+
         if (!isRevealed) return;
 
         bool isPlayer = other.CompareTag("Player") ||
